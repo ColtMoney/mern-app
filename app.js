@@ -4,6 +4,9 @@ import mongoose from 'mongoose'
 import authRoutes from './routes/auth.routes.js'
 import linkRoutes from './routes/link.routes.js'
 import redirectRoutes from './routes/redirect.routes.js'
+import path from 'path'
+
+const __dirname = path.resolve()
 
 const app = express()
 
@@ -13,6 +16,14 @@ app.use(express.json({ extended: true }))
 app.use(authRoutes)
 app.use(linkRoutes)
 app.use(redirectRoutes)
+
+if (process.env.NODE_ENV === 'production') {
+  app.use('/', express.static(path.resolve(__dirname, 'client', 'build')))
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'buid', 'index.html'))
+  })
+}
 
 async function start() {
   try {
