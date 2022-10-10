@@ -1,0 +1,6 @@
+{
+  "port": 5000,
+  "jwtSecret": "coltmoney secret",
+  "mongoUri": "mongodb+srv://colt:12345qwery@cluster0.zsucgtx.mongodb.net/?retryWrites=true&w=majority",
+  "baseUrl": "http://localhost:5000"
+}
